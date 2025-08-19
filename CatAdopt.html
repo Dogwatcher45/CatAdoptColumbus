@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adopt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: Tomato;
+      font-size: 8vw;
+      margin-bottom: 0.5em;
+    }
+
+    a.main-link {
+      font-size: 5vw;
+      text-decoration: underline;
+      color: #0073e6;
+      display: inline-block;
+      margin-bottom: 1em;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    figure {
+      margin: 0;
+      text-align: center;
+      max-width: 200px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    figcaption {
+      margin-top: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 3rem;
+      }
+      a.main-link {
+        font-size: 1.5rem;
+      }
+      figure {
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>KITTY</h1>
+  <a class="main-link" href="https://www.columbushumane.org/cats" target="_blank">Adoptable Cats</a>
+
+  <div class="gallery" id="gallery"></div>
+
+  <script>
+    // Example JSON data; replace with API call if available
+    const catsData = [
+      {
+        name: "Rumble",
+        photo: "https://g.petango.com/photos/818/d143d933-4654-40a8-a252-55952d8c1c33.jpg",
+        link: "https://ws.petango.com/webservices/adoptablesearch/wsAdoptableAnimalDetails2.aspx?id=58852763"
+      },
+      {
+        name: "Annie",
+        photo: "https://g.petango.com/photos/818/d55f42c8-08e1-4aa0-b472-3f2ed2ac7247.jpg",
+        link: "https://ws.petango.com/webservices/adoptablesearch/wsAdoptableAnimalDetails2.aspx?id=58852975"
+      },
+      {
+        name: "Olive",
+        photo: "https://g.petango.com/photos/818/027ef338-73bd-4161-9d80-4b7dd51588dd.jpg",
+        link: "https://ws.petango.com/webservices/adoptablesearch/wsAdoptableAnimalDetails2.aspx?id=58477765"
+      },
+      {
+        name: "Duchess",
+        photo: "https://g.petango.com/photos/818/799f67d8-27a3-416b-949c-f56410eb2149.jpg",
+        link: "https://ws.petango.com/webservices/adoptablesearch/wsAdoptableAnimalDetails2.aspx?id=58994946"
+      }
+    ];
+
+    const gallery = document.getElementById('gallery');
+
+    // Dynamically create gallery
+    catsData.forEach(cat => {
+      const figure = document.createElement('figure');
+
+      const a = document.createElement('a');
+      a.href = cat.link;
+      a.target = "_blank";
+
+      const img = document.createElement('img');
+      img.src = cat.photo;
+      img.alt = cat.name;
+      img.title = cat.name;
+
+      const caption = document.createElement('figcaption');
+      caption.textContent = cat.name;
+
+      a.appendChild(img);
+      figure.appendChild(a);
+      figure.appendChild(caption);
+      gallery.appendChild(figure);
+    });
+  </script>
+</body>
+</html>
